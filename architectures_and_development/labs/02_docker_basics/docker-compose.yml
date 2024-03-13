@@ -2,8 +2,12 @@ services:
   web:
     build: .
     ports:
-      - 9001:9000
+      - 9000:9000
+    environment:
+      - USER=username
     depends_on:
+      - redis
+    networks:
       - redis
 
   redis:
