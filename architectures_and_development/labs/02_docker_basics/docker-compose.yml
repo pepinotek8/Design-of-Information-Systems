@@ -1,0 +1,26 @@
+services:
+  web:
+    build: .
+    ports:
+      - 9000:9000
+    environment:
+      - USER=username
+    depends_on:
+      - redis
+    networks:
+      - redis
+
+  redis:
+    image: redis
+    ports:
+      - '6379:6379'
+    volumes:
+      - redis_data:/data
+    networks:
+      - redis
+
+volumes:
+  redis_data:
+
+networks:
+  redis:
